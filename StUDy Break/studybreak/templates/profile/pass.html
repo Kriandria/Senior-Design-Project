@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Edit Profile{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="post">
+    <label for="old">Old Password</label>
+    <input name="old" id="old" type="password" required>
+    <p>Passwords must be at least 7 characters long, and contain at least one uppercase letter, one lowercase letter, and one number.</p>
+    <label for="new">New Password</label>
+    <input name="new" id="new" type="password" required>
+    <label for="new2">Retype New Password</label>
+    <input name="new2" id="new2" type="password" required>
+    
+    <br><br><br><input type="submit" value="Update Password">
+  </form>
+{% endblock %}

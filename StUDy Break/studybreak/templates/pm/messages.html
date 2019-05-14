@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Open Conversations{% endblock %}</h1>
+{% endblock %}
+
+{% block content %} 
+    <br>
+    <form action="{{ url_for('pm.tryConv') }}" method="POST">
+        <label for="users">Start a new conversation: </label>
+        <input name="users" list="users" required>
+        <datalist id="users">
+          {% for user in userlist %}
+          <option value="{{ user['id'] }}">{{ user['fname'] }} {{ user['lname'] }}</option>
+          {% endfor %}
+        </datalist>
+    </form>
+
+    {% for i in range(namelist|length) %}
+        <a href="{{ url_for('pm.getConv', id=convid[i]) }}">{{ namelist[i]['fname'] }} {{ namelist[i]['lname'] }}</a>
+        <br>
+        <br>
+    {% endfor %}
+{% endblock %}

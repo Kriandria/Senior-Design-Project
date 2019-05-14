@@ -1,0 +1,395 @@
+html {
+  font-family: sans-serif;
+  background: #003c71;
+  padding: 1rem;
+}
+
+body {
+  max-width: 1080px;
+  width: 85%;
+  margin: 0 auto;
+  background: #36393F;
+  color: #ececed;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: serif;
+  color: white;
+  width: 100%
+  padding: 20px 26px;
+  display: block;
+  background-color: #003c71;  
+  text-align: center;
+  align: center;
+  margin: 1rem 0;
+  border-radius: 4px;
+  border: 2px solid black;
+}
+
+
+a {
+  color: #ececed;
+  background-color: #303339;
+  padding: none;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+a:hover {
+  background-color: #ffd300;
+  color: black;
+}
+
+.cool {
+  display: block;
+  background-color: #303339;
+  color: #ececed;
+  border: 2px solid #202225;
+  padding: 12px 20 px;
+  border-radius: 4px;
+}
+
+.sent {
+  display: block
+  background-color: #003c71;
+  color: #ececed;
+  border: 2px solid #202225;
+  padding: 12px 20px;
+  border-radius: 4px;
+}
+
+li {
+  padding: 5px 10px;
+  background-color: #303339;
+  border: 2px solid #202225;
+  border-radius: 4px;
+  list-style: none;
+}
+
+.register {
+  background-image: url("https://cdn.discordapp.com/attachments/574782032962519064/576484335348350986/epwz1wa7vucungbapukp.png");
+  text-align: center;
+  font-size: 40px;
+  height: 500px;
+  color: black;
+}
+
+.login {
+  background-image: url("https://cdn.discordapp.com/attachments/574782032962519064/576482954981670922/Stocksy_txp3b1361adM7d000_Small_7372151.png");
+  text-align: center;
+  font-size: 40px;
+  height: 500px;
+  color: black;
+  overflow: hidden;
+}
+
+select {
+  width: 35%;
+  padding: 16px 20px;
+  border: 2px solid black;
+  border-radius: 4px;
+  background-color: #303339;
+  color: #ececed;
+}
+
+textarea {
+  width: 100%;
+  height: 150px;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: 2px solid black;
+  border-radius: 4px;
+  background-color: #303339;
+  color: #b9bbbe;
+  resize: none;
+}
+
+input {
+  color: #ececed;
+  align: center;
+  background-color: #303339;
+  border: 2px solid black;
+  border-radius: 4px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  font-size: 15px;
+  padding: 12px 20px;
+  width: 35%;
+}
+
+.f {
+  display: block;
+  text-align: center;
+}
+
+input:focus {
+  border: 2px #ffd300;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid lightgray;
+}
+
+.dot {
+  height: 10px;
+  width: 10px;
+  background-color: #ffd300;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right:10px;
+}
+
+.notiffuncts {
+  color: slategray;
+  font-style: italic;
+  float: right;
+}
+
+.notiffuncts a {
+  margin-left:30px;
+  display: inline-block;
+}
+
+nav {
+  background: #303339;
+  display: flex;
+  align-items: center;
+  padding: 0 0.5rem;
+}
+
+nav h1 {
+  flex: auto;
+  margin: 0;
+}
+
+nav h1 a {
+  text-decoration: none;
+  padding: 0.25rem 0.5rem;
+}
+
+nav ul  {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li a, nav ul li span, header .action {
+  display: block;
+  padding: 0.5rem;
+}
+
+.content {
+  color: #b9bbbe;
+  padding: 0 1rem 1rem;
+}
+
+.content > header {
+  border-bottom: 1px solid lightgray;
+  display: flex;
+  align-items: flex-end;
+}
+
+.content > header h1 {
+  flex: auto;
+  margin: 1rem 0 0.25rem 0;
+}
+
+.flash {
+  margin: 1em 0;
+  padding: 1em;
+  border: 2px solid #ffd300;
+}
+
+.post > header {
+  display: flex;
+  align-items: flex-end;
+  font-size: 0.85em;
+}
+
+.post > header > div:first-of-type {
+  flex: auto;
+}
+
+.post > header h1 {
+  font-size: 1.5em;
+  margin-bottom: 0;
+}
+
+.post .about {
+  color: slategray;
+  font-style: italic;
+}
+
+.post .highlight {
+  background-color: slategray;
+}
+
+.post .body {
+  white-space: pre-line;
+  display: inline-block;
+}
+
+.content:last-child {
+  margin-bottom: 0;
+}
+
+.content form {
+  margin: 1em 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.content label {
+  font-weight: bold;
+  margin-bottom: 0.5em;
+}
+
+.content input, .content textarea {
+  margin-bottom: 1em;
+}
+
+.content textarea {
+  min-height: 12em;
+  resize: vertical;
+}
+
+input.danger {
+  color: #ffd300;
+}
+
+input[type=submit] {
+  align-self: start;
+  min-width: 10em;
+  padding: 10px;
+  background-color: #ffd300;
+  color: black;
+  width: 10%;
+}
+
+
+/* Add a black background color to the top navigation bar */
+.topnav {
+    overflow: hidden;
+    background-color: #202225;
+    position: fixed;
+    top: 0;
+    display: inline;
+    overflow: hidden;
+    padding: 0;
+    list-style-type: none;
+    margin: 0;
+    width: 82.8%;
+    max-width: 1080px;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+    float: left;
+    display: block;
+    color: #b9bbbe;
+    font-weight: normal;
+    background-color: #202225;
+    text-align: center;
+    padding: 10px;
+    text-decoration: none;
+    font-size: 17px;
+    display: block;
+    width: 90px;
+    height: 100%;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+    background-color: #ffd300;
+    color: black;
+}
+
+/* Style the "active" element to highlight the current page */
+.topnav a.active {
+    background-color: #00539f;
+    color: white;
+}
+
+.topnav a.notif {
+  background-color: #FFD300;
+  color: black;
+}
+
+.topnav .search-container {
+    float: right;
+}
+
+/* Style the search box inside the navigation bar */
+.topnav input[type=text] {
+    padding: 6px;
+    width: 100%;
+    border: 2px solid black;
+    margin-top: 8px;
+    margin-right: 16px;
+    font-size: 17px;
+    float: right;
+}
+
+.topnav .search-container .searchbutton {
+    float: right;
+    padding: 6px;
+    margin-top: 8px;
+    margin-right: 16px;
+    background: #ddd;
+    font-size: 17px;
+    border: none;
+    cursor: pointer;
+  }
+  
+.topnav .search-container .searchbutton:hover {
+    background: #ccc;
+}
+
+/* When the screen is less than 600px wide, stack the links and the search field vertically instead of horizontally */
+@media screen and (max-width: 600px) {
+    .topnav a, .topnav input[type=text] {
+        float: none;
+        display: block;
+        text-align: left;
+        width: 100%;
+        margin: 0;
+        padding: 14px;
+    }
+    .topnav input[type=text] {
+        border: 1px solid #ffd300;
+    }
+}
+
+.comment {
+  background:#36393f;
+  color: #dcddde;
+  padding:2px 5px;
+  margin-right:10px;
+  font:16px Cabin, sans-serif;
+  border-radius:3px;
+  -moz-border-radius:3px;
+  -webkit-border-radius:3px;
+  transition:.2s linear;
+  -moz-transition:.2s linear;
+  -webkit-transition:.2s linear;
+}
+
+.likes {
+  background: #202225;
+  color: #dcddde;
+  padding:2px 5px;
+  margin-right:10px;
+  font:16px Cabin, sans-serif;
+}
+
+.pbody {
+  background: #2f3136;
+  color: #dcddde;
+  font:18px Cabin, sans-serif;
+}
+
+p.article {
+  max-width: 50%;
+}

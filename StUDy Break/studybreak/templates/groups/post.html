@@ -1,0 +1,131 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="content">
+      <h1>{% block title %}{{ gname }}{% endblock %}</h1>
+      
+      <h3>Group Members:</h3>
+      {% for i in range(members|length) %}
+        <li><a href="{{ url_for('profile.profile', id=ids[i])}}">{{ members[i] }}</span>
+      {% endfor %}
+      <hr>
+
+      <h3>Posts:</h3>
+      {% if g.user %}
+      <article class='post'>
+      <a class="action" href="{{ url_for('blog.create', g=gname) }}">New</a>
+        </article>
+      {% endif %}
+
+      <br><br><br>
+      <h2>Notified Post:</h2>
+      <hr>
+      <article class="post">
+        <header>
+          <div>
+            <h1>{{ p['title'] }}</h1>
+            <div class="about">by <a href="{{ url_for('profile.profile', id=p['author_id'])}}">{{ p['username'] }}</a> on {{ p['created'].strftime('%Y-%m-%d') }}</div>
+          </div>
+        </header>
+        <p class="body">{{ p['body'] }}</p>
+        <br>
+
+        <div class="likes">
+            {% if li[0]|length > 0 %}
+            <span>Liked by</span>
+            {% endif %}
+            {% for j in range(li[0]|length) %}
+            {% if loop.last and li[0]|length > 1 %}
+              <span>and</span>
+            {% endif %}
+              <a href="{{ url_for('profile.profile', id=li[0][j]) }}">{{ lu[0][j] }}</a>
+              {% if not loop.last and li[0]|length > 2 %}
+                <span>, </span>
+              {% endif %}
+            {% endfor %}
+
+            <div>
+              {% if g.user['id'] in li[0] %}
+                <a class="action" href="{{ url_for('blog.unlike', id=p['id'], type='post', r='2', gname=gname, pid=pid) }}">Unlike</a>
+              {% else %}
+                <a class="action" href="{{ url_for('blog.like', id=p['id'], gid=p['gid'], type='post', r='2', gname=gname, pid=pid) }}">Like</a>
+              {% endif %}
+            </div>
+
+
+        <br>
+        <div class="comment">
+          {% for comment in comments %}
+            {% if comment['pid'] == p['id'] %}
+              <p><a href="{{ url_for('profile.profile', id=comment['userid']) }}">{{ comment['username'] }}</a> {{ comment['body'] }}</p>
+            {% endif %}
+          {% endfor %}
+          <form action="{{ url_for('auth.search') }}" method="POST">
+          <input type="hidden" name="p" value="{{ p['id'] }}">
+          <input type="text" placeholder="Add a comment.." name="comment" id="comment">
+          <input type="submit" style="display: none" />
+          </div>
+      </article>
+      <hr>
+      <br><br><br><br>
+
+      {% for i in range(posts|length) %}
+      {% if posts[i]['id'] != p['id'] %}
+    <article class="post">
+      <header>
+        <div>
+          <h1>{{ posts[i]['title'] }}</h1>
+          <div class="about">by <a href="{{ url_for('profile.profile', id=posts[i]['author_id'])}}">{{ posts[i]['username'] }}</a> on {{ posts[i]['created'].strftime('%Y-%m-%d') }}</div>
+        </div>
+        {% if g.user['id'] == posts[i]['author_id'] %}
+          <a class="action" href="{{ url_for('blog.update', id=posts[i]['id']) }}">Edit</a>
+        {% endif %}
+      </header>
+      <p class="body">{{ posts[i]['body'] }}</p>
+      <br>
+
+      <div class="likes">
+          {% if idlikes[i]|length > 0 %}
+          <span>Liked by</span>
+          {% endif %}
+          {% for j in range(idlikes[i]|length) %}
+          {% if loop.last and idlikes[i]|length > 1 %}
+            <span>and</span>
+          {% endif %}
+            <a href="{{ url_for('profile.profile', id=idlikes[i][j]) }}">{{ ulikes[i][j] }}</a>
+            {% if not loop.last and idlikes[i]|length > 2 %}
+              <span>, </span>
+            {% endif %}
+          {% endfor %}
+
+          <div>
+            {% if g.user['id'] in idlikes[i] %}
+            <a class="action" href="{{ url_for('blog.unlike', id=p['id'], type='post', r='2', gname=gname, pid=pid) }}">Unlike</a>
+            {% else %}
+              <a class="action" href="{{ url_for('blog.like', id=p['id'], gid=p['gid'], type='post', r='2', gname=gname, pid=pid) }}">Like</a>
+            {% endif %}
+          </div>
+
+        </div>
+
+      <br>
+
+      <div class="comment">
+        {% for comment in comments %}
+          {% if comment['pid'] == posts[i]['id'] %}
+            <p><a href="{{ url_for('profile.profile', id=comment['userid']) }}">{{ comment['username'] }}</a> {{ comment['body'] }}</p>
+          {% endif %}
+        {% endfor %}
+        <form action="{{ url_for('auth.search') }}" method="POST">
+        <input type="hidden" name="p" value="{{ posts[i]['id'] }}">
+        <input type="text" placeholder="Add a comment.." name="comment" id="comment">
+        <input type="submit" style="display: none" />
+        </div>
+    </article>
+    {% if not loop.last %}
+      <hr>
+    {% endif %}
+    {% endif %}
+  {% endfor %}
+</section>
+{% endblock %}

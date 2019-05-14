@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  {% block title %}{% endblock %}
+{% endblock %}
+
+{% block content %}
+  <div class="register">
+    Connect with your class!
+  </div>
+  <form method="post">
+  <div class="f">
+    <label for="email">EMAIL:</label>
+    <input name="email" id="email" value="{{ email }}" required>&nbsp;&nbsp;&nbsp;
+    <label for="username">USERNAME:</label>
+    <input name="username" id="username" value="{{ uname }}" required>
+
+    <p>Passwords must be at least 7 characters long, and contain at least one uppercase letter, one lowercase letter, and one number.</p>
+    <label for="password">PASSWORD</label><br>
+    <input type="password" name="password" id="password" required>&nbsp;&nbsp;&nbsp;
+    <br>
+    <label for="password">RE-ENTER YOUR PASSWORD:</label><br>
+    <input type="password" name="password2" id="password2" required><br>
+
+    <label for="fname">FIRST NAME:</label>
+    <input name="fname" id="fname" value="{{ fname }}" required>&nbsp;&nbsp;&nbsp;
+    <label for="lname">LAST NAME:</label>
+    <input name="lname" id="lname" value="{{ lname }}" required><br>
+
+    <label for="colleges">SCHOOL</label><br>
+    <input name="colleges" list="colleges" value="{{ colleges }}" required>
+    <datalist id="colleges">
+      {% for college in college_list %}
+      <option value="{{ college }}">{{ college }}</option>
+      {% endfor %}
+    </datalist>
+    <br>
+    <label for="major">MAJOR</label><br>
+    <input name="major" list="major" value="{{ major }}" required>
+    <datalist id="major">
+      {% for major in major_list %}
+      <option value="{{ major }}">{{ major }}</option>
+      {% endfor %}
+    </datalist>
+    <br>
+    <label for="gyear">GRADUATION YEAR</label><br>
+    <select name="gyear" id="gyear" required>
+        <option value="2018" {% if gyear=="2018" %} selected="selected"{% endif %}>2018</option>
+        <option value="2019" {% if gyear=="2019" %} selected="selected"{% endif %}>2019</option>
+        <option value="2020" {% if gyear=="2020" %} selected="selected"{% endif %}>2020</option>
+        <option value="2021" {% if gyear=="2021" %} selected="selected"{% endif %}>2021</option>
+        <option value="2022" {% if gyear=="2022" %} selected="selected"{% endif %}>2022</option>
+        <option value="2023" {% if gyear=="2023" %} selected="selected"{% endif %}>2023</option>
+        <option value="2024" {% if gyear=="2024" %} selected="selected"{% endif %}>2024</option>
+        <option value="2025" {% if gyear=="2025" %} selected="selected"{% endif %}>2025</option>
+      </select>
+    <br><br><br><input type="submit" value="Register">
+  </div>
+  </form>
+{% endblock %}

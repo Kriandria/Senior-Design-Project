@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="content">
+      <h1>{% block title %}{{ gname }}{% endblock %}</h1>
+      {% if gname in subg %}
+        <a class="action" href="{{ url_for('groups.unsubscribe', g=gname) }}">Unsubscribe</a>
+      {% else %}
+        <a class="action" href="{{ url_for('groups.subscribe', g=gname) }}">Subscribe</a>
+      {% endif %}
+
+      {% if ids_a|length > 0 %}
+        <h3>Group Admins:</h3>
+        {% for i in range(ids_a|length) %}
+          <li><a href="{{ url_for('profile.profile', id=ids_a[i])}}">{{ usern_a[i][0] }}</a></span>
+        {% endfor %}
+<br><br>
+        {% if g.user['id'] in ids_a %}
+          <label for="newAdmin">Register New Group Admin</label>
+          <form method='POST' action="{{ url_for('groups.register_admin', g=gname) }}">
+            <input name="newAdmin" list="newAdmin" value="{{ newAdmin }}" required>
+            <datalist id="newAdmin">
+              {% for user in nonadmins %}
+              <option value="{{ user['id'] }}">{{ user['fname'] }} {{ user['lname'] }} - {{ user['username'] }}</option>
+              {% endfor %}
+            </datalist>
+            <input type="submit" value="Add new admin">
+          </form>
+        {% endif %}
+      {% endif %}
+
+
+      <h3>Group Members:</h3>
+      {% for i in range(members|length) %}
+        <li><a href="{{ url_for('profile.profile', id=ids[i])}}">{{ members[i] }}</span>
+      {% endfor %}
+      <hr>
+
+      <h3>Posts:</h3>
+      {% if gname in subg %}
+      <article class='post'>
+      <a class="action" href="{{ url_for('blog.create', g=gname) }}">New</a>
+        </article>
+      {% endif %}
+      <br><br><br>
+      <hr>
+      {% for i in range (posts|length) %}
+      <form>
+        <article class="post">
+          <header>
+            <div>
+              <h1>{{ posts[i]['title'] }}</h1>
+              <div class="about">by <a href="{{ url_for('profile.profile', id=posts[i]['author_id'])}}">{{ posts[i]['username'] }}</a> on {{ posts[i]['created'].strftime('%Y-%m-%d') }}</div>
+            </div>
+            {% if g.user['id'] == posts[i]['author_id'] %}
+              <a class="action" href="{{ url_for('blog.update', id=posts[i]['id']) }}">Edit</a>
+            {% endif %}
+            {% if g.user['id'] == posts[i]['author_id'] or g.user['id'] in ids_a %}
+              <form action="{{ url_for('blog.delete', id=posts[i]['id']) }}" method="post">
+                <input class="danger" type="submit" value="Delete" onclick="return confirm('Are you sure?');">
+              </form>
+            {% endif %}
+          </header>
+          <p class="body">{{ posts[i]['body'] }}</p>
+
+            <div class="likes">
+                {% if idlikes[i]|length > 0 %}
+                <span>Liked by</span>
+                {% endif %}
+                {% for j in range(idlikes[i]|length) %}
+                {% if loop.last and idlikes[i]|length > 1 %}
+                  <span>and</span>
+                {% endif %}
+                  <a href="{{ url_for('profile.profile', id=idlikes[i][j]) }}">{{ ulikes[i][j] }}</a>
+                  {% if not loop.last and idlikes[i]|length > 2 %}
+                    <span>, </span>
+                  {% endif %}
+                {% endfor %}
+
+              <div>
+                {% if g.user['id'] in idlikes[i] %}
+                  <a class="action" href="{{ url_for('blog.unlike', id=posts[i]['id'], gid=posts[i]['gid'], type='post', gname=gname, r='3') }}">Unlike</a>
+                {% else %}
+                  <a class="action" href="{{ url_for('blog.like', id=posts[i]['id'], gid=posts[i]['gid'], type='post', gname=gname, r='3') }}">Like</a>
+                {% endif %}
+              </div>
+
+            </div>
+
+
+        <br>
+      <div class="comment">
+        {% for comment in comments %}
+          {% if comment['pid'] == posts[i]['id'] %}
+            <p><a href="{{ url_for('profile.profile', id=comment['userid']) }}">{{ comment['username'] }}</a> {{ comment['body'] }}</p>
+          {% endif %}
+        {% endfor %}
+        <form action="{{ url_for('auth.search') }}" method="POST">
+        <input type="hidden" name="p" value="{{ posts[i]['id'] }}">
+        <input type="text" placeholder="Add a comment.." name="comment" id="comment">
+        <input type="submit" style="display: none" />
+        </div>
+      </article>
+    </form>
+    {% if not loop.last %}
+      <hr>
+    {% endif %}
+  {% endfor %}
+</section>
+{% endblock %}

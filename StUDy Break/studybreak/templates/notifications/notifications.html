@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Notifications{% endblock %}</h1>
+  <div class="notiffuncts">
+    <a href="{{ url_for('notif.mark_all_read') }}">Mark All as Read</a>
+    <a href="{{ url_for('notif.delAll') }}">Delete All Notifications</a>
+  </div>
+{% endblock %}
+
+{% block content %}
+  {% if glist == [] %}
+    <p>You currently have no notifications.</p>
+  {% else %}
+    {% for i in range(notifications|length) %}
+      <article class="post">
+        <header>
+          <div>
+            <div class="about">In <a href="{{ url_for('groups.load_group', gname=glist[i]) }}">{{ glist[i] }}</a> on {{ notifications[i]['created'].strftime('%Y-%m-%d') }}</div>
+          </div>
+        </header>
+        <br>
+        {% if notifications[i]['read'] == 0 %}
+        <span class="dot"></span>
+        {% endif %}
+
+        <p class="body">{{ notifications[i]['body'] }} Click <a href="{{ url_for('notif.movingRead', p=notifications[i]['pid'], gname=glist[i], n=notifications[i]['id']) }}">here</a> to check it out.</p>
+
+        <div>
+          <div class="notiffuncts">
+            {% if notifications[i]['read'] == 0 %}
+              <a href="{{ url_for('notif.mark_read', id=notifications[i]['id']) }}">Mark as Read</a>
+            {% else %}
+            <a href="{{ url_for('notif.mark_unread', id=notifications[i]['id']) }}">Mark as Unread</a>
+            {% endif %}
+            <a href="{{ url_for('notif.delNotif', id=notifications[i]['id']) }}">Delete</a>
+          </div>
+        </div>
+      </article>
+      {% if not loop.last %}
+        <hr>
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+{% endblock %}

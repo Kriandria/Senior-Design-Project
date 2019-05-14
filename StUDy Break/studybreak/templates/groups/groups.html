@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="content">
+      <h1>{% block title %}Subscribed Groups{% endblock %}</h1>
+      <a class="action" href="{{ url_for('groups.create', a=g.user['id']) }}">Create Group</a>
+      <h3>Groups:</h3>
+      {% for group in g.grouplist %}
+          <li><a href="{{ url_for('auth.show_group_info', type=group)}}">{{ group }}</a>
+      {% endfor %}
+  </section>
+{% endblock %}

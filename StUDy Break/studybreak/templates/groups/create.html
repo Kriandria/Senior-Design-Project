@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Create New Group{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="post">
+    <label for="name">Name</label>
+    <input name="name" id="name" required>
+
+    <p>Warning: University Name will be appended to the front of this title.</p>
+
+    <label for="colleges">School</label>
+    <input name="colleges" list="colleges" required>
+    <datalist id="colleges">
+      {% for college in college_list %}
+      <option value="{{ college }}">{{ college }}</option>
+      {% endfor %}
+    </datalist>
+
+    <br><br><input type="submit" value="Create">
+{% endblock %}

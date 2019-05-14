@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %} Conversation with 
+    {% if g.user['id'] == members[0] %}
+        {{ membername[1] }}
+    {% else %}
+        {{ membername[0] }}  
+    {% endif %}
+  {% endblock %}</h1>
+{% endblock %}
+
+{% block content %} 
+  <form>
+      {% for message in conv %}
+      {% if message['userid'] == g.user['id'] %}
+        <div class="sent"><p align="right">{{ message['body'] }}</p></div>
+      {% else %}
+        <div class="cool"><p>&nbsp;&nbsp;&nbsp;{{ message['body'] }}</p></div>
+      {% endif %}
+      {% endfor %}
+
+      <input type="hidden" name="id" value="{{ convid }}">
+      <input type="text" placeholder="Send a message.." name="mess" id="mess">
+      <input type="submit" style="display: none" />
+      </div>
+{% endblock %}

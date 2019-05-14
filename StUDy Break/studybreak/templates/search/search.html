@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Search Results For: {{ s }}</h1>
+
+    <h3>Groups:</h3>
+    {% for group in glist %}
+        <li><a href="{{ url_for('auth.show_group_info', type=group)}}">{{ group }}</a>
+    {% endfor %}
+    <br>
+
+    <h3>Usernames:</h3>
+    {% for i in range(ulist|length) %}
+        <li><a href="{{ url_for('profile.profile', id=uids[i])}}">{{ ulist[i] }}</a>
+    {% endfor %}
+
+    <h3>Users:</h3>
+    {% for i in range(nlist|length) %}
+        <li><a href="{{ url_for('profile.profile', id=nids[i])}}">{{ nlist[i] }}</a>
+    {% endfor %}
+{% endblock %}

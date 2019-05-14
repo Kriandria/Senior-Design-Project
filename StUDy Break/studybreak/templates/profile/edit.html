@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Edit Profile{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="post">
+    <label for="email">Email</label>
+    <input name="email" id="email" value="{{g.user['email'] }}" required>
+    <label for="username">Username</label>
+    <input name="username" id="username" value="{{g.user['username'] }}" required>
+
+    <label for="fname">First Name</label>
+    <input name="fname" id="fname" value="{{g.user['fname'] }}" required>
+    <label for="lname">Last Name</label>
+    <input name="lname" id="lname" value="{{g.user['lname'] }}" required><br>
+
+    <label for="colleges">School</label>
+    <input name="colleges" list="colleges" value="{{g.user['school'] }}" required>
+    <datalist id="colleges">
+      {% for college in clist %}
+      <option value="{{ college }}">{{ college }}</option>
+      {% endfor %}
+    </datalist>
+
+    <label for="major">Major</label>
+    <input name="major" list="major" value="{{g.user['major'] }}" required>
+    <datalist id="major">
+      {% for major in mlist %}
+      <option value="{{ major }}">{{ major }}</option>
+      {% endfor %}
+    </datalist>
+
+    <label for="gyear">Graduation Year</label>
+    <select name="gyear" id="gyear" required>
+      <option value="2018" {% if g.user['gradyear']==2018 %} selected="selected"{% endif %}>2018</option>
+      <option value="2019" {% if g.user['gradyear']==2019 %} selected="selected"{% endif %}>2019</option>
+      <option value="2020" {% if g.user['gradyear']==2020 %} selected="selected"{% endif %}>2020</option>
+      <option value="2021" {% if g.user['gradyear']==2021 %} selected="selected"{% endif %}>2021</option>
+      <option value="2022" {% if g.user['gradyear']==2022 %} selected="selected"{% endif %}>2022</option>
+      <option value="2023" {% if g.user['gradyear']==2023 %} selected="selected"{% endif %}>2023</option>
+      <option value="2024" {% if g.user['gradyear']==2024 %} selected="selected"{% endif %}>2024</option>
+      <option value="2025" {% if g.user['gradyear']==2025 %} selected="selected"{% endif %}>2025</option>
+    </select>
+
+    <br><br><br><input type="submit" value="Save">
+  </form>
+{% endblock %}

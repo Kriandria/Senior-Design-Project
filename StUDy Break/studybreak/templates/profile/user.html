@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Profile{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    <br>
+    <table>
+            <tr>
+                <th><!--EMPTY--></th>
+                <th><!--EMPTY--></th>
+            </tr>
+            <tr>
+                <td>Student ID Number:</td>
+                <td>{{ user[0] }}</td>
+            </tr>
+            <tr>
+                <td>Username:</td>
+                <td>{{ user[1] }}</td>
+            </tr>
+            <tr>
+                <td>Email:</td>
+                <td>{{ user[7] }}</td>
+            </tr>
+            <tr>
+                <td>First Name:</td>
+                <td>{{ user[2] }}</td>
+            </tr>
+            <tr>
+                <td>Last Name:</td>
+                <td>{{ user[3] }}</td>
+            </tr>
+            <tr>
+                <td>School:</td>
+                <td>{{ user[4] }}</td>
+            </tr>
+            <tr>
+                <td>Graduation Year:</td>
+                <td>{{ user[5] }}</td>
+            </tr>
+            <tr>
+                <td>Major:</td>
+                <td>{{ user[6] }}</td>
+            </tr>
+    </table>
+    <br>
+    {% if g.user['id'] == user[0] %}
+        <a href="{{ url_for('profile.edit') }}">Edit Profile</a><br><br>
+        <a href="{{ url_for('profile.change_pass') }}">Change Password</a>
+        <hr>
+        <form action="{{ url_for('profile.deleteAccount') }}">
+        <input class="danger" type="submit" value="Delete" onclick="return confirm('Are you sure?');">
+        </form>
+    {% else %}
+        <a href="{{ url_for('pm.tryConv', id=user[0]) }}">Message</a>
+    {% endif %}
+{% endblock %}
