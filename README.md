@@ -60,14 +60,14 @@ Run
 
     $ export FLASK_APP=studybreak
     $ export FLASK_ENV=development
-    $ flask init-db
+    $ flask init-db     // Only run this if you wish to clear the database
     $ flask run
 
 Or on Windows cmd::
 
     > set FLASK_APP=studybreak
     > set FLASK_ENV=development
-    > flask init-db
+    > flask init-db     // Only run this if you wish to clear the database
     > flask run
 
 Open http://127.0.0.1:5000 in a browser.
