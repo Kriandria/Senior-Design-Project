@@ -6,16 +6,16 @@
     <h3>Groups:</h3>
     {% for group in glist %}
         <li><a href="{{ url_for('auth.show_group_info', type=group)}}">{{ group }}</a>
-    {% endfor %}
+    {% endfor %}</li>
     <br>
 
     <h3>Usernames:</h3>
     {% for i in range(ulist|length) %}
         <li><a href="{{ url_for('profile.profile', id=uids[i])}}">{{ ulist[i] }}</a>
-    {% endfor %}
+    {% endfor %}</li>
 
     <h3>Users:</h3>
     {% for i in range(nlist|length) %}
         <li><a href="{{ url_for('profile.profile', id=nids[i])}}">{{ nlist[i] }}</a>
-    {% endfor %}
+    {% endfor %}</li>
 {% endblock %}

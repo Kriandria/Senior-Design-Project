@@ -4,7 +4,7 @@ from flask import Blueprint, render_template, request, g, flash, session, redire
 bp = Blueprint('groups', __name__, url_prefix='/groups')
 
 def create_group(gname):
-    admin = request.args.get('a', None)
+    admin = request.args.get('a', "")
     db = get_db()
     if db.execute(
         'SELECT id FROM groups WHERE gname = ?', (gname,)
@@ -336,7 +336,8 @@ def get_admins(gname):
 
 def remove_admin(gname):
     db = get_db()
-
+    admins = []
+    
     aarray = db.execute('SELECT administrators FROM groups WHERE gname = ?', (gname,)).fetchone()[0]
     if aarray is not None:
         try:

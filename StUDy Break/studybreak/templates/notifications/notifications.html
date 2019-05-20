@@ -13,6 +13,7 @@
     <p>You currently have no notifications.</p>
   {% else %}
     {% for i in range(notifications|length) %}
+    <li>
       <article class="post">
         <header>
           <div>
@@ -40,6 +41,6 @@
       {% if not loop.last %}
         <hr>
       {% endif %}
-    {% endfor %}
+    {% endfor %}</li>
   {% endif %}
 {% endblock %}

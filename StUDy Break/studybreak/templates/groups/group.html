@@ -13,7 +13,7 @@
         <h3>Group Admins:</h3>
         {% for i in range(ids_a|length) %}
           <li><a href="{{ url_for('profile.profile', id=ids_a[i])}}">{{ usern_a[i][0] }}</a></span>
-        {% endfor %}
+        {% endfor %}</li>
 <br><br>
         {% if g.user['id'] in ids_a %}
           <label for="newAdmin">Register New Group Admin</label>
